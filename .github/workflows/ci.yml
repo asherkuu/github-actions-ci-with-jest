@@ -44,6 +44,7 @@ jobs: # ci actions
   # add comment
   add-comment:
     runs-on: ubuntu-latest
+    needs: ci-job # running after ci-job done
     if: always()
     permissions:
       issues: write
@@ -59,7 +60,7 @@ jobs: # ci actions
           script: |
             github.rest.issues.createComment({
               issue_number: context.issue.number,
-              owener: context.repo.owener,
+              owener: context.repo.owner,
               repo: context.repo.repo,
               body: "Ci passed"
             })
@@ -73,7 +74,7 @@ jobs: # ci actions
           script: |
             github.rest.issues.createComment({
               issue_number: context.issue.number,
-              owener: context.repo.owener,
+              owener: context.repo.owner,
               repo: context.repo.repo,
               body: "Ci failure"
             })
