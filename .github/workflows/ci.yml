@@ -47,7 +47,7 @@ jobs: # ci actions
     if: always()
     permissions:
       issues: write
-      pull_requests: write
+      pull-requests: write
     steps:
       - name: Comment to PR(Success)
         env:
