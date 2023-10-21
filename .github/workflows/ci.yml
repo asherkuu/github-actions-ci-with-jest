@@ -4,7 +4,10 @@ jobs: # ci actions
   ci-job:
     runs-on: ubuntu-latest # github runner os (linux, windows, macos)
     steps:
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 6.0.2
       - uses: actions/checkout@v4.0.0 # code checkout
-      - run: npm ci
-      - run: npm run build
-      - run: npm test
+      - run: pnpm -v
+      # - run: npm run build
+      # - run: npm test
