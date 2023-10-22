@@ -50,11 +50,11 @@ jobs: # ci actions
     permissions:
       issues: write
       pull-requests: write
+    env:
+      RESULT: ${{needs.ci-job.result}}
     steps:
       # success
       - name: Comment to PR(Success)
-        env:
-          RESULT: ${{needs.ci-job.result}}
         if: ${{env.RESULT}} == 'success'
         uses: actions/github-script@v6
         id: success-script
@@ -69,8 +69,6 @@ jobs: # ci actions
 
       # failure
       - name: Comment to PR(Failure)
-        env:
-          RESULT: ${{needs.ci-job.result}}
         if: ${{env.RESULT}} == 'failure'
         uses: actions/github-script@v6
         id: failure-script
