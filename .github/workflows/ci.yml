@@ -36,9 +36,6 @@ jobs: # ci actions
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Build Project
-        run: pnpm run build
-
       # https://nextjs.org/docs/pages/building-your-application/deploying/ci-build-caching
       - name: Setup build cache
         uses: actions/cache@v3
@@ -52,6 +49,9 @@ jobs: # ci actions
           # If source files changed but packages didn't, rebuild from a prior cache.
           restore-keys: |
             ${{ runner.os }}-nextjs-${{ hashFiles('**/pnpm-lock.yaml') }}-
+
+      - name: Build Project
+        run: pnpm run build
 
       - name: Test Project
         run: pnpm run test
