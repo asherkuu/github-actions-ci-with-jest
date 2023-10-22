@@ -39,6 +39,7 @@ jobs: # ci actions
       - name: Build Project
         run: pnpm run build
 
+      # https://nextjs.org/docs/pages/building-your-application/deploying/ci-build-caching
       - name: Setup build cache
         uses: actions/cache@v3
         with:
