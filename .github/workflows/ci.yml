@@ -65,11 +65,11 @@ jobs: # ci actions
       issues: write
       pull-requests: write
     env:
-      RESULT: ${{needs.ci-job.result}}
+      CI_JOB_RESULT: ${{needs.ci-job.result}}
     steps:
       # success
       - name: Comment to PR(Success)
-        if: ${{env.RESULT}} == 'success'
+        if: ${{env.CI_JOB_RESULT == 'success'}}
         uses: actions/github-script@v6
         id: success-script
         with:
@@ -83,7 +83,7 @@ jobs: # ci actions
 
       # failure
       - name: Comment to PR(Failure)
-        if: ${{env.RESULT}} == 'failure'
+        if: ${{env.CI_JOB_RESULT == 'failure'}}
         uses: actions/github-script@v6
         id: failure-script
         with:
